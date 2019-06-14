@@ -16,4 +16,14 @@ class HelperClass {
         alert.addAction(action)
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    func showPopUp(_ popup: UIViewController, parent: UIViewController){
+        popup.view.backgroundColor = UIColor.white.withAlphaComponent(1)
+        let nav = UINavigationController(rootViewController: popup)
+        nav.setNavigationBarHidden(true, animated: false)
+        let presStyle: UIModalPresentationStyle = (UIDevice.current.systemVersion as NSString).integerValue == 7 ? .currentContext : .overCurrentContext
+        nav.modalPresentationStyle = presStyle
+        parent.present(nav, animated: true, completion: nil)
+    }
+
 }

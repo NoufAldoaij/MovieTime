@@ -69,5 +69,10 @@ UICollectionViewDataSource,UISearchBarDelegate {
     @IBAction func showSearchView(_ sender: UIButton) {
         HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
     }
+    
+    @IBAction func searchForMovies(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchMoviesVC") as! SearchMoviesVC
+        HelperClass().showPopUp(vc, parent: self)
+    }
 }
 

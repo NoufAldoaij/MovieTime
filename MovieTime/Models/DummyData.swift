@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class DummyData {
+class DummyData:NSObject {
     
     var moviePoster:UIImage?
     var movieTitle:String?
