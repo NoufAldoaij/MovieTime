@@ -12,9 +12,11 @@ class DummyData:NSObject {
     
     var moviePoster:UIImage?
     var movieTitle:String?
-    
-    init(moviePoster:UIImage, movieTitle:String) {
+    var moviesReleaseDate:String?
+
+    init(moviePoster:UIImage, movieTitle:String, moviesReleaseDate:String) {
         self.moviePoster = moviePoster
         self.movieTitle = movieTitle
+        self.moviesReleaseDate = moviesReleaseDate
     }
 }

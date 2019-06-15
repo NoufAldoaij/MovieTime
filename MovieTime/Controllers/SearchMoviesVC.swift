@@ -29,9 +29,9 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
         super.viewDidLoad()
         setUI()
         initValue()
-        // Do any additional setup after loading the view.
     }
     
+
     func setUI() {
         speechRecognizer?.delegate = self
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)

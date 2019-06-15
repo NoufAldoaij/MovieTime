@@ -11,7 +11,6 @@
 		9506CF1522AD66EB004DAFF5 /* DiscoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506CF1422AD66EB004DAFF5 /* DiscoverVC.swift */; };
 		9506CF1822AD66EB004DAFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9506CF1622AD66EB004DAFF5 /* Main.storyboard */; };
 		9506CF1B22AD66EB004DAFF5 /* MovieTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9506CF1922AD66EB004DAFF5 /* MovieTime.xcdatamodeld */; };
-		9506CF1D22AD66EC004DAFF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9506CF1C22AD66EC004DAFF5 /* Assets.xcassets */; };
 		9506CF2022AD66EC004DAFF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9506CF1E22AD66EC004DAFF5 /* LaunchScreen.storyboard */; };
 		9506CF2D22AD67BB004DAFF5 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506CF2C22AD67BB004DAFF5 /* MovieCell.swift */; };
 		9506CF2F22AD69DF004DAFF5 /* MovieTimeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9506CF2E22AD69DF004DAFF5 /* MovieTimeColors.swift */; };
@@ -24,6 +23,8 @@
 		951BB22D22AFB7A60042CABA /* StaticDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951BB22C22AFB7A60042CABA /* StaticDataHelper.swift */; };
 		951D54FA22B10CBD00BADFE4 /* MovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D54F922B10CBD00BADFE4 /* MovieTableCell.swift */; };
 		9560C44122B396B400A8F65B /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560C44022B396B400A8F65B /* UserPreferences.swift */; };
+		9560C44422B3AC9A00A8F65B /* DiscoverMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560C44322B3AC9A00A8F65B /* DiscoverMoreVC.swift */; };
+		9560C44622B4E51B00A8F65B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9560C44522B4E51B00A8F65B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +33,6 @@
 		9506CF1422AD66EB004DAFF5 /* DiscoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverVC.swift; sourceTree = "<group>"; };
 		9506CF1722AD66EB004DAFF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9506CF1A22AD66EB004DAFF5 /* MovieTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieTime.xcdatamodel; sourceTree = "<group>"; };
-		9506CF1C22AD66EC004DAFF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9506CF1F22AD66EC004DAFF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9506CF2122AD66EC004DAFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9506CF2C22AD67BB004DAFF5 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		951BB22C22AFB7A60042CABA /* StaticDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticDataHelper.swift; sourceTree = "<group>"; };
 		951D54F922B10CBD00BADFE4 /* MovieTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableCell.swift; sourceTree = "<group>"; };
 		9560C44022B396B400A8F65B /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		9560C44322B3AC9A00A8F65B /* DiscoverMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMoreVC.swift; sourceTree = "<group>"; };
+		9560C44522B4E51B00A8F65B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +108,7 @@
 			children = (
 				9506CF1622AD66EB004DAFF5 /* Main.storyboard */,
 				9506CF1E22AD66EC004DAFF5 /* LaunchScreen.storyboard */,
-				9506CF1C22AD66EC004DAFF5 /* Assets.xcassets */,
+				9560C44522B4E51B00A8F65B /* Assets.xcassets */,
 				9560C44222B397A900A8F65B /* Cells */,
 			);
 			path = Views;
@@ -117,6 +119,7 @@
 			children = (
 				9506CF1422AD66EB004DAFF5 /* DiscoverVC.swift */,
 				951B449B22B016A700E6BAE7 /* SearchMoviesVC.swift */,
+				9560C44322B3AC9A00A8F65B /* DiscoverMoreVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,7 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9506CF2022AD66EC004DAFF5 /* LaunchScreen.storyboard in Resources */,
-				9506CF1D22AD66EC004DAFF5 /* Assets.xcassets in Resources */,
+				9560C44622B4E51B00A8F65B /* Assets.xcassets in Resources */,
 				9506CF1822AD66EB004DAFF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +229,7 @@
 				951BB22922AFB40B0042CABA /* HelperClass.swift in Sources */,
 				951BB22D22AFB7A60042CABA /* StaticDataHelper.swift in Sources */,
 				9506CF1522AD66EB004DAFF5 /* DiscoverVC.swift in Sources */,
+				9560C44422B3AC9A00A8F65B /* DiscoverMoreVC.swift in Sources */,
 				951D54FA22B10CBD00BADFE4 /* MovieTableCell.swift in Sources */,
 				9506CF1322AD66EB004DAFF5 /* AppDelegate.swift in Sources */,
 				9506CF3122AD7635004DAFF5 /* Extension.swift in Sources */,

@@ -31,21 +31,13 @@ extension UIView {
     }
     
     func dropShadow() {
-        //        self.layer.cornerRadius = 10
-        //        self.layer.borderColor = MovieTimeColors.lightGray_Color.cgColor
-        //        self.layer.borderWidth = 1
-        //        self.layer.shadowColor = UIColor.black.cgColor
-        //        self.layer.shadowOpacity = 0.8
-        //        self.layer.shadowOffset = CGSize(width: -1, height: 1)
-        //        self.layer.shadowRadius = 1
-        //        self.layer.masksToBounds = false
         self.layer.cornerRadius = 10
         self.layer.borderColor = MovieTimeColors.lightGray.cgColor
         self.layer.borderWidth = 1.5
-       self.layer.shadowColor = MovieTimeColors.lightGray_Color.cgColor
-       self.layer.shadowOpacity = 0.2
-       self.layer.shadowOffset = CGSize(width: 0, height: 5)
-       self.layer.shadowRadius = 6
+        self.layer.shadowColor = MovieTimeColors.lightGray_Color.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.layer.shadowRadius = 6
     }
     
     

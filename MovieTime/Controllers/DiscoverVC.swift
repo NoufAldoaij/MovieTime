@@ -9,13 +9,13 @@
 import UIKit
 import Speech
 class DiscoverVC: UIViewController,UICollectionViewDelegate,
-UICollectionViewDataSource,UISearchBarDelegate {
+UICollectionViewDataSource {
     
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var popularMoviesCollectionView: UICollectionView!
     @IBOutlet weak var upComingMoviesCollectionView: UICollectionView!
-
+    
     var listOfMovies: [DummyData] = []
     
     override func viewDidLoad() {
@@ -24,6 +24,11 @@ UICollectionViewDataSource,UISearchBarDelegate {
         listOfMovies = StaticDataHelper().getAllMovies()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+        
     func setUI() {
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBarView.setViewWithBorder()
@@ -63,15 +68,13 @@ UICollectionViewDataSource,UISearchBarDelegate {
     
     
     @IBAction func showAllMovies(_ sender: Any) {
-        HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
-    }
-    
-    @IBAction func showSearchView(_ sender: UIButton) {
-        HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DiscoverMoreVC") as! DiscoverMoreVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func searchForMovies(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "SearchMoviesVC") as! SearchMoviesVC
+
         HelperClass().showPopUp(vc, parent: self)
     }
 }
