@@ -89,7 +89,9 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
+        vc.movies = listOfMovies[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func searchMoviesList(_ sender: UIButton) {
