@@ -17,40 +17,35 @@ class MovieTableCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var moiveView: UIView!
     @IBOutlet weak var moviesReleaseDate: UILabel!
+    @IBOutlet weak var voteAverage: UILabel!
     
-    var movie:DummyData?
+    var movie:MovieEntity?
+    var moviesPosterData: Data?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         moiveView.dropShadow()
-        // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    @IBAction func addToWatchList(_ sender: UIButton) {
+    // Save or remove movie to the watch list
+    @IBAction func updateWatchList(_ sender: UIButton) {
         if watchListButton.currentImage == #imageLiteral(resourceName: "bookmark") {
-            UserPreferences().updateToWatchList(toWatch: true, movie: movie!)
-            //watchListButton.backgroundColor = MovieTimeColors.darkPink_Color
+            UserPreferences().addToWatchList(movie!, moviesPosterData!)
             watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
         } else {
-            UserPreferences().updateToWatchList(toWatch: false, movie: movie!)
-           // watchListButton.backgroundColor = MovieTimeColors.darkGray_Color
+           UserPreferences().removeFromWatchList(movie!.title!, movie!.releaseDate!)
             watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
         }
     }
     
-    
-    @IBAction func addToFavorites(_ sender: UIButton) {
+    // Save or remove movie from favorites list
+    @IBAction func updateFavoritesList(_ sender: UIButton) {
         if favoriteButton.currentImage == #imageLiteral(resourceName: "hearts") {
-            UserPreferences().updateToFavoriteList(isAFavorited: true, movie: movie!)
+            UserPreferences().addToFavoriteList(movie!, moviesPosterData!)
             favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
             
         } else {
-            UserPreferences().updateToFavoriteList(isAFavorited: false, movie: movie!)
+            UserPreferences().removeFavoriteList(movie!.title!, movie!.releaseDate!)
             favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
         }
     }

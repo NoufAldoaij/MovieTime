@@ -7,23 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoriteListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateFavoriteList {
     
-    
-    
+
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    var favoriteList: [FavoriteList]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.favoriteList
-    }
-    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var noDataFound: UILabel!
     
+    var favoriteList: [FavoriteListEntity] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -32,6 +27,7 @@ class FavoriteListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
+        loadData()
     }
     
     func setUI() {
@@ -40,26 +36,43 @@ class FavoriteListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         noDataFound.isHidden = true
     }
     
+    // Load saved moives for DB
+    func loadData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest:NSFetchRequest<FavoriteListEntity> = FavoriteListEntity.fetchRequest()
+        do {
+            favoriteList = try  context.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch {
+            HelperClass().showAlert(title: nil, message: "Could Not Load Save Data!", self)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         noDataFound.isHidden = favoriteList.count > 0 ? true : false
         return favoriteList.count > 0 ? favoriteList.count : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchListCell
-        cell.movie =  favoriteList[indexPath.row].movieInfo
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SavedMovieCell
+        let entity = favoriteList[indexPath.row]
+        cell.favoriteList = entity
         cell.favoriteListDelegate = self
-        cell.moviesPoster.image = favoriteList[indexPath.row].movieInfo?.moviePoster
-        cell.movieTitle.text = favoriteList[indexPath.row].movieInfo?.movieTitle
-        cell.movieGenres.text = "2019 Action,Thriller"
+        cell.moviesPoster.image = UIImage(data: entity.moviePoster!)
+        cell.movieTitle.text = entity.movieTitle
+        cell.movieGenres.text = entity.movieReleaseDate
+        //cell.movieGenres.text = "2019 Action,Thriller"
         return cell
     }
     
+    // Show more details for individual movie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
     }
     
+    // Update the favorite list after a moive have been remove for the list
     func updateFavoriteList() {
+        loadData()
         tableView.reloadData()
     }
     

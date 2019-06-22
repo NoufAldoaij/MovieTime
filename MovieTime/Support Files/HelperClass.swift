@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 class HelperClass {
     
+    // Show an alert message
     func showAlert(title:String?, message:String?, _ viewController:UIViewController) {
         let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
@@ -17,6 +18,7 @@ class HelperClass {
         viewController.present(alert, animated: true, completion: nil)
     }
     
+ 
     func showPopUp(_ popup: UIViewController, isNavrHidden: Bool = true, parent: UIViewController){
         popup.view.backgroundColor = UIColor.white.withAlphaComponent(1)
         let nav = UINavigationController(rootViewController: popup)
@@ -25,5 +27,13 @@ class HelperClass {
         nav.modalPresentationStyle = presStyle
         parent.present(nav, animated: true, completion: nil)
     }
-
+    
+    func getAppConfigValue(Key:String) -> Any {
+        if let path = Bundle.main.path(forResource: "appConfig", ofType: "plist") {
+            if let file = NSDictionary(contentsOfFile: path) as? [String: Any] {
+                return file[Key] as Any
+            }
+        }
+        return ""
+    }
 }

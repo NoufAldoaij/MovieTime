@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MDG-H6-RLP">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="0Zn-TD-0oo" customClass="DiscoverVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JRs-Wd-Ek6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boy-my-94g">
-                                <rect key="frame" x="15" y="59" width="384" height="56"/>
+                                <rect key="frame" x="15" y="35" width="384" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Jcw-LB-EAm">
                                         <rect key="frame" x="0.0" y="0.0" width="369" height="56"/>
@@ -48,7 +48,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbS-l8-7Ax">
-                                <rect key="frame" x="0.0" y="123" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="99" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZE7-WD-sg0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="587"/>
@@ -59,7 +59,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIA-aW-CFi">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIA-aW-CFi">
                                                 <rect key="frame" x="355" y="15" width="44" height="26"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                 <state key="normal" title="SEE ALL"/>
@@ -80,14 +80,14 @@
                                                     <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popularMoviesCell" id="P2I-0m-fx3" customClass="MovieCell" customModule="MovieTime" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popularMoviesCell" id="P2I-0m-fx3" customClass="MovieCollectionViewCell" customModule="MovieTime" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="15" width="155" height="230"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qTz-EE-XZF">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qTz-EE-XZF">
                                                                     <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -109,7 +109,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="addToWatchList:" destination="P2I-0m-fx3" eventType="touchUpInside" id="Xfy-c5-Vlh"/>
+                                                                        <action selector="updateWatchList:" destination="P2I-0m-fx3" eventType="touchUpInside" id="Xfy-c5-Vlh"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWb-6n-RbZ">
@@ -126,7 +126,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="addToFavorites:" destination="P2I-0m-fx3" eventType="touchUpInside" id="Un6-cQ-fCI"/>
+                                                                        <action selector="updateFavoritesList:" destination="P2I-0m-fx3" eventType="touchUpInside" id="Un6-cQ-fCI"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -155,7 +155,7 @@
                                                     <outlet property="delegate" destination="0Zn-TD-0oo" id="d1g-Y1-sBW"/>
                                                 </connections>
                                             </collectionView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQg-D2-VGl">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQg-D2-VGl">
                                                 <rect key="frame" x="355" y="301" width="44" height="26"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                 <state key="normal" title="SEE ALL"/>
@@ -182,14 +182,14 @@
                                                     <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="upComingMoviesCell" id="5kt-Dh-eWD" customClass="MovieCell" customModule="MovieTime" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="upComingMoviesCell" id="5kt-Dh-eWD" customClass="MovieCollectionViewCell" customModule="MovieTime" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="15" width="155" height="230"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eAI-4d-Gc5">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="eAI-4d-Gc5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -211,7 +211,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="addToWatchList:" destination="5kt-Dh-eWD" eventType="touchUpInside" id="kV8-Md-JEF"/>
+                                                                        <action selector="updateWatchList:" destination="5kt-Dh-eWD" eventType="touchUpInside" id="kV8-Md-JEF"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHF-Ui-ybG">
@@ -228,7 +228,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="addToFavorites:" destination="5kt-Dh-eWD" eventType="touchUpInside" id="mcv-Gu-8qL"/>
+                                                                        <action selector="updateFavoritesList:" destination="5kt-Dh-eWD" eventType="touchUpInside" id="mcv-Gu-8qL"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -310,7 +310,7 @@
                         <outlet property="popularMoviesCollectionView" destination="kzd-hJ-X61" id="8GT-GV-heb"/>
                         <outlet property="searchBar" destination="Jcw-LB-EAm" id="W1L-N4-VrZ"/>
                         <outlet property="searchBarView" destination="boy-my-94g" id="F78-nx-u77"/>
-                        <outlet property="upComingMoviesCollectionView" destination="D1T-jF-0No" id="z3D-lb-l5A"/>
+                        <outlet property="upcomingMoviesCollectionView" destination="D1T-jF-0No" id="z3D-lb-l5A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeA-ZA-7m9" sceneMemberID="firstResponder"/>
@@ -344,11 +344,11 @@
             <objects>
                 <viewController storyboardIdentifier="SearchMoviesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ICg-R6-FxS" customClass="SearchMoviesVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OHf-6i-EUR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZ1-Hv-Rn1">
-                                <rect key="frame" x="15" y="59" width="384" height="56"/>
+                                <rect key="frame" x="15" y="35" width="384" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="b15-Ck-JnI">
                                         <rect key="frame" x="0.0" y="0.0" width="349" height="56"/>
@@ -367,7 +367,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yei-5N-VFw">
-                                <rect key="frame" x="349" y="62" width="50" height="50"/>
+                                <rect key="frame" x="349" y="38" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="6Hu-t4-NjD"/>
                                     <constraint firstAttribute="height" constant="50" id="gT2-o3-M9w"/>
@@ -378,20 +378,20 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JaB-Op-7tB">
-                                <rect key="frame" x="15" y="130" width="384" height="766"/>
+                                <rect key="frame" x="15" y="106" width="384" height="630"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="170" id="2na-I9-3cV" customClass="MovieTableCell" customModule="MovieTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2na-I9-3cV" id="nCB-Fu-4gd">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2na-I9-3cV" id="nCB-Fu-4gd">
                                             <rect key="frame" x="0.0" y="0.0" width="384" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-kD-xtu">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-kD-xtu">
                                                     <rect key="frame" x="0.0" y="10" width="384" height="129"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hC4-4m-jWm">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hC4-4m-jWm">
                                                             <rect key="frame" x="0.0" y="0.0" width="105" height="129"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="129" id="8TQ-VG-Cpq"/>
@@ -399,7 +399,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ped-un-pbt">
-                                                            <rect key="frame" x="132" y="30" width="192" height="26"/>
+                                                            <rect key="frame" x="132" y="30" width="192" height="25.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -418,11 +418,11 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToWatchList:" destination="2na-I9-3cV" eventType="touchUpInside" id="9jF-xf-gd6"/>
+                                                                <action selector="updateWatchList:" destination="2na-I9-3cV" eventType="touchUpInside" id="9jF-xf-gd6"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-hh-2TS">
-                                                            <rect key="frame" x="339" y="75" width="30" height="30"/>
+                                                            <rect key="frame" x="339" y="74.999999999999986" width="30" height="30"/>
                                                             <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="7Vm-0E-mqW"/>
@@ -435,11 +435,11 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToFavorites:" destination="2na-I9-3cV" eventType="touchUpInside" id="6dK-Mi-DdZ"/>
+                                                                <action selector="updateFavoritesList:" destination="2na-I9-3cV" eventType="touchUpInside" id="6dK-Mi-DdZ"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6w-Dg-AxP">
-                                                            <rect key="frame" x="132" y="66" width="192" height="19"/>
+                                                            <rect key="frame" x="132" y="65.666666666666671" width="192" height="18.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -491,7 +491,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No movies Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcv-FG-Mc5">
-                                <rect key="frame" x="134" y="436.5" width="146" height="23"/>
+                                <rect key="frame" x="134" y="356.66666666666669" width="146" height="23"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -525,12 +525,12 @@
                         <outlet property="tableView" destination="JaB-Op-7tB" id="eox-Uq-R6c"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S8W-7Q-3hb" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="down" id="RVR-sz-8gi">
                     <connections>
                         <action selector="dismissView:" destination="ICg-R6-FxS" id="VdR-L2-ry1"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8W-7Q-3hb" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="257" y="1308"/>
         </scene>
@@ -539,11 +539,11 @@
             <objects>
                 <viewController storyboardIdentifier="DiscoverMoreVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eRT-Yr-H1R" customClass="DiscoverMoreVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="soA-TQ-5AE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Db1-iL-vjG">
-                                <rect key="frame" x="15" y="59" width="384" height="837"/>
+                                <rect key="frame" x="15" y="35" width="384" height="701"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="221" id="NRO-oD-VDb" customClass="MovieTableCell" customModule="MovieTime" customModuleProvider="target">
@@ -556,7 +556,7 @@
                                                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxd-Tj-dEo">
                                                     <rect key="frame" x="0.0" y="10" width="384" height="200"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="viH-uQ-JKn">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="viH-uQ-JKn">
                                                             <rect key="frame" x="0.0" y="0.0" width="384" height="200"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XS-M3-vh2">
@@ -579,7 +579,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToFavorites:" destination="NRO-oD-VDb" eventType="touchUpInside" id="o7d-rS-49M"/>
+                                                                <action selector="updateFavoritesList:" destination="NRO-oD-VDb" eventType="touchUpInside" id="o7d-rS-49M"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-WB-bjY">
@@ -596,7 +596,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToWatchList:" destination="NRO-oD-VDb" eventType="touchUpInside" id="08u-yG-jVy"/>
+                                                                <action selector="updateWatchList:" destination="NRO-oD-VDb" eventType="touchUpInside" id="08u-yG-jVy"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uh-5A-3VO">
@@ -666,6 +666,7 @@
                                             <outlet property="moviePoster" destination="viH-uQ-JKn" id="JGa-WH-Nz9"/>
                                             <outlet property="movieTitle" destination="2Uh-5A-3VO" id="16T-Vs-Ehs"/>
                                             <outlet property="moviesReleaseDate" destination="5XS-M3-vh2" id="eZK-Wo-mOT"/>
+                                            <outlet property="voteAverage" destination="op9-vN-Rnf" id="5T8-kY-wLC"/>
                                             <outlet property="watchListButton" destination="0Uy-WB-bjY" id="vsF-YN-vzv"/>
                                         </connections>
                                     </tableViewCell>
@@ -676,7 +677,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No movies Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sro-sh-0lO">
-                                <rect key="frame" x="134" y="436.5" width="146" height="23"/>
+                                <rect key="frame" x="134" y="356.66666666666669" width="146" height="23"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -707,11 +708,11 @@
             <objects>
                 <viewController storyboardIdentifier="MovieDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M4Q-7j-GDK" customClass="MovieDetailsVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EKU-Fp-gNZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w20-jn-6uk">
-                                <rect key="frame" x="15" y="59" width="384" height="442"/>
+                                <rect key="frame" x="15" y="35" width="384" height="442"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lBV-Ag-2Tp">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="442"/>
@@ -780,13 +781,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopsis:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQL-Hk-Y46">
-                                <rect key="frame" x="15" y="516" width="384" height="25"/>
+                                <rect key="frame" x="15" y="492" width="384" height="25"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tP-rj-RQ7">
-                                <rect key="frame" x="15" y="556" width="384" height="20"/>
+                                <rect key="frame" x="15" y="532" width="384" height="20"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -841,11 +842,11 @@
             <objects>
                 <viewController storyboardIdentifier="WatchListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4Mz-Sm-5Jo" customClass="WatchListVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R93-OK-OHI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgX-LJ-Igo">
-                                <rect key="frame" x="15" y="59" width="384" height="56"/>
+                                <rect key="frame" x="15" y="35" width="384" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="edn-bh-DRa">
                                         <rect key="frame" x="0.0" y="0.0" width="349" height="56"/>
@@ -861,7 +862,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlH-XH-6B0">
-                                <rect key="frame" x="349" y="62" width="50" height="50"/>
+                                <rect key="frame" x="349" y="38" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="77Q-bm-KYl"/>
                                     <constraint firstAttribute="height" constant="50" id="9yF-4K-fYZ"/>
@@ -869,10 +870,10 @@
                                 <state key="normal" image="micrfo"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jgH-jV-I9d">
-                                <rect key="frame" x="15" y="130" width="384" height="766"/>
+                                <rect key="frame" x="15" y="106" width="384" height="630"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="170" id="Qjz-WL-U5D" customClass="WatchListCell" customModule="MovieTime" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="170" id="Qjz-WL-U5D" customClass="SavedMovieCell" customModule="MovieTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qjz-WL-U5D" id="zk0-Wn-cs4">
@@ -890,7 +891,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5J-dY-vPr">
-                                                            <rect key="frame" x="132" y="30" width="192" height="26"/>
+                                                            <rect key="frame" x="132" y="30" width="192" height="25.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -909,7 +910,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToWatchList:" destination="Qjz-WL-U5D" eventType="touchUpInside" id="fcA-jB-4QN"/>
+                                                                <action selector="updateWatchList:" destination="Qjz-WL-U5D" eventType="touchUpInside" id="fcA-jB-4QN"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMr-qO-V2c">
@@ -926,11 +927,11 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToFavorites:" destination="Qjz-WL-U5D" eventType="touchUpInside" id="Nt5-2j-WwY"/>
+                                                                <action selector="updateFavoritesList:" destination="Qjz-WL-U5D" eventType="touchUpInside" id="Nt5-2j-WwY"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeF-T1-4g0">
-                                                            <rect key="frame" x="132" y="66" width="192" height="19"/>
+                                                            <rect key="frame" x="132" y="65.666666666666671" width="192" height="18.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -982,7 +983,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You dont have any moives add to your watch list yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mN9-bP-n9k">
-                                <rect key="frame" x="15" y="424.5" width="384" height="47"/>
+                                <rect key="frame" x="15" y="344.66666666666669" width="384" height="46.666666666666686"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1031,11 +1032,11 @@
             <objects>
                 <viewController storyboardIdentifier="FavoriteListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V4x-pv-053" customClass="FavoriteListVC" customModule="MovieTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lck-us-ODP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-wr-jS8">
-                                <rect key="frame" x="15" y="59" width="384" height="56"/>
+                                <rect key="frame" x="15" y="35" width="384" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="f9p-9j-So8">
                                         <rect key="frame" x="0.0" y="0.0" width="349" height="56"/>
@@ -1051,7 +1052,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1s-SU-rHI">
-                                <rect key="frame" x="349" y="62" width="50" height="50"/>
+                                <rect key="frame" x="349" y="38" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="6lU-9Y-rMN"/>
                                     <constraint firstAttribute="height" constant="50" id="rAi-1p-e7Z"/>
@@ -1059,10 +1060,10 @@
                                 <state key="normal" image="micrfo"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mqd-25-PYh">
-                                <rect key="frame" x="15" y="130" width="384" height="766"/>
+                                <rect key="frame" x="15" y="106" width="384" height="630"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="170" id="o4w-VK-rwH" customClass="WatchListCell" customModule="MovieTime" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="170" id="o4w-VK-rwH" customClass="SavedMovieCell" customModule="MovieTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o4w-VK-rwH" id="ycl-oU-JJo">
@@ -1080,7 +1081,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAj-s6-Zlj">
-                                                            <rect key="frame" x="132" y="30" width="192" height="26"/>
+                                                            <rect key="frame" x="132" y="30" width="192" height="25.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1099,7 +1100,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToWatchList:" destination="o4w-VK-rwH" eventType="touchUpInside" id="Gyj-ot-RCe"/>
+                                                                <action selector="updateWatchList:" destination="o4w-VK-rwH" eventType="touchUpInside" id="Gyj-ot-RCe"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vT-8P-6aB">
@@ -1116,11 +1117,11 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="addToFavorites:" destination="o4w-VK-rwH" eventType="touchUpInside" id="CrC-KR-i15"/>
+                                                                <action selector="updateFavoritesList:" destination="o4w-VK-rwH" eventType="touchUpInside" id="CrC-KR-i15"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-e2-mV9">
-                                                            <rect key="frame" x="132" y="66" width="192" height="19"/>
+                                                            <rect key="frame" x="132" y="65.666666666666671" width="192" height="18.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1172,7 +1173,7 @@
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You dont have any moives add to your favorite list yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXB-14-2ET">
-                                <rect key="frame" x="15" y="424.5" width="384" height="47"/>
+                                <rect key="frame" x="15" y="344.66666666666669" width="384" height="46.666666666666686"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1223,6 +1224,7 @@
         <image name="micrfo" width="128" height="128"/>
         <image name="pinkHearts" width="512" height="512"/>
         <image name="pink_bookmark" width="20" height="20"/>
+        <image name="poster_placeholder" width="600" height="850"/>
         <image name="search_selected" width="32" height="32"/>
         <image name="watchlist" width="48" height="48"/>
     </resources>

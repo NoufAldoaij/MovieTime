@@ -48,14 +48,14 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
         self.tableView.contentOffset = CGPoint(x:0, y:-self.refreshControl.frame.size.height)
     }
     
-    //Loading new contacts after refresh the screen
+    // Loading new contacts after refresh the screen
     @objc func refreshData() {
         let searchTextField: UITextField? = searchBar.value(forKey: "searchField") as? UITextField
         searchTextField?.text = ""
         refreshControl.beginRefreshing()
     }
     
-    //Filtere the list of contacts base on the contact name
+    // Filtere the list of contacts base on the contact name
     @objc func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             filteredData = listOfMovies
@@ -80,7 +80,7 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieTableCell
-        cell.movie = filteredData![indexPath.row]
+        //cell.movie = filteredData![indexPath.row]
         cell.moviePoster.image = filteredData![indexPath.row].moviePoster
         cell.movieTitle.text = filteredData![indexPath.row].movieTitle
         cell.movieGenres.text = "2019 Action,Thriller"

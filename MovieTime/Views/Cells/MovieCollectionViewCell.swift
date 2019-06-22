@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  MovieCollectionViewCell.swift
 //  MovieTime
 //
 //  Created by Nouf Abdullah on 6/8/19.
@@ -7,31 +7,34 @@
 //
 
 import UIKit
-
-class MovieCell: UICollectionViewCell {
+import CoreData
+class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var moviesPoster: UIImageView!
     @IBOutlet weak var watchListButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
-    var movie:DummyData?
+    var movie: MovieEntity?
+    var moviesPosterData: Data?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    @IBAction func addToWatchList(_ sender: UIButton) {
+    // Save or remove movie to the watch list
+    @IBAction func updateWatchList(_ sender: UIButton) {
         if watchListButton.currentImage == #imageLiteral(resourceName: "bookmark") {
-            UserPreferences().updateToWatchList(toWatch: true, movie: movie!)
+            UserPreferences().addToWatchList(movie!,moviesPosterData!)
             watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
         } else {
-            UserPreferences().updateToWatchList(toWatch: false, movie: movie!)
+            UserPreferences().removeFromWatchList(movie!.title!, movie!.releaseDate!)
             watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
         }
     }
-    
-    @IBAction func addToFavorites(_ sender: Any) {
+   
+    // Save or remove movie from favorites list
+    @IBAction func updateFavoritesList(_ sender: Any) {
         if favoriteButton.currentImage == #imageLiteral(resourceName: "hearts") {
-            UserPreferences().updateToFavoriteList(isAFavorited: true, movie: movie!)
+            UserPreferences().addToFavoriteList(movie!, moviesPosterData!)
             favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
-            
         } else {
-            UserPreferences().updateToFavoriteList(isAFavorited: false, movie: movie!)
+            UserPreferences().removeFavoriteList(movie!.title!, movie!.releaseDate!)
             favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
         }
     }

@@ -7,19 +7,14 @@
 //
 
 import UIKit
-
+import CoreData
 class WatchListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UpdateWatchList {
     
     
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    var watchList: [WatchList]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.watchList
-    }
-    
+
+    var watchList: [WatchListEntity] = []
     @IBOutlet var tableView: UITableView!
     @IBOutlet var noDataFound: UILabel!
     
@@ -30,7 +25,7 @@ class WatchListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,Up
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        tableView.reloadData()
+        loadData()
     }
     
     func setUI() {
@@ -38,6 +33,18 @@ class WatchListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,Up
         searchBarView.setViewWithBorder()
         noDataFound.isHidden = true
     }
+    // Load saved moives for DB
+    func loadData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest:NSFetchRequest<WatchListEntity> = WatchListEntity.fetchRequest()
+        do {
+            watchList = try context.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch {
+            HelperClass().showAlert(title: nil, message: "Could Not Load Save Data!", self)
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         noDataFound.isHidden = watchList.count > 0 ? true : false
@@ -45,20 +52,24 @@ class WatchListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,Up
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WatchListCell
-        cell.movie =  watchList[indexPath.row].movieInfo
-        cell.delegate = self
-        cell.moviesPoster.image = watchList[indexPath.row].movieInfo?.moviePoster
-        cell.movieTitle.text = watchList[indexPath.row].movieInfo?.movieTitle
-        cell.movieGenres.text = "2019 Action,Thriller"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SavedMovieCell
+        let entity = watchList[indexPath.row]
+        cell.watchList = entity
+        cell.WatchListDelegate = self
+        cell.moviesPoster.image = UIImage(data: entity.moviePoster!)
+        cell.movieTitle.text = entity.movieTitle
+        cell.movieGenres.text = entity.movieReleaseDate
         return cell
     }
     
+    // Show more details for individual movie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
     }
-    
+   
+    // Update the watch list after a moive have been remove for the list 
     func updateWatchList() {
+        loadData()
         tableView.reloadData()
     }
 }
