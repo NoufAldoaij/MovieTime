@@ -18,10 +18,6 @@ class WatchListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UI
    
     var watchList: [WatchListEntity] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadData()

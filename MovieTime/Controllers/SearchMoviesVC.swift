@@ -23,7 +23,8 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     var recognitionTask: SFSpeechRecognitionTask?
     var audioEngine = AVAudioEngine()
     var pageNumber = 1
-    
+    var feedback:UInt32 = 1519
+    var edgeInsets:CGFloat = 55
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -44,15 +45,20 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     }
     
     func loadData() {
-        webserviceManager().getMovies(page: pageNumber, classfication: "popular") { (success, movies ) in
-            if success {
-                self.listOfMovies = movies!
-                self.tableView.reloadData()
+        if Connectivity.isConnectedToInternet {
+            webserviceManager().getMovies(page: pageNumber, classfication: "popular") { (success, movies ) in
+                if success {
+                    self.listOfMovies = movies!
+                    self.tableView.reloadData()
+                }
             }
+        } else {
+            HelperClass().showAlert(title: nil, message: "Please make sure you have your internet connection on", self)
         }
+        
     }
     
- 
+    
     // Filtere the list of contacts base on the contact name
     @objc func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
@@ -119,10 +125,10 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     }
     
     @IBAction func searchMoviesList(_ sender: UIButton) {
-        AudioServicesPlaySystemSound(1519) // Actuate "Peek" feedback (weak boom)
+        AudioServicesPlaySystemSound(feedback) // Actuate "Peek" feedback (weak boom)
         if sender.currentImage == #imageLiteral(resourceName: "micrfo") {
             sender.setImage(#imageLiteral(resourceName: "mic"), for: .normal)
-            sender.imageEdgeInsets = UIEdgeInsets(top: 55, left: 55, bottom: 55, right: 55)
+            sender.imageEdgeInsets = UIEdgeInsets(top: edgeInsets, left: edgeInsets, bottom: edgeInsets, right: edgeInsets)
             startRecording()
         } else {
             if audioEngine.isRunning {
@@ -137,7 +143,7 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     @IBAction func dismissView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
- 
+    
     func startRecording() {
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -203,13 +209,4 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
             print("audioEngine couldn't start because of an error.")
         }
     }
-    
-    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        if available {
-            // startStopBtn.isEnabled = true
-        } else {
-            // startStopBtn.isEnabled = false
-        }
-    }
-
 }

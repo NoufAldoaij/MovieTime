@@ -23,7 +23,7 @@ class DiscoverMoreVC: UIViewController,UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         loadData()
     }
     
@@ -93,9 +93,9 @@ class DiscoverMoreVC: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     // Show more details for individual movie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
-        vc.movieID = String(listOfMovies[indexPath.row].id)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
+        viewController.movieID = String(listOfMovies[indexPath.row].id)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func dismissView(_ sender: Any) {

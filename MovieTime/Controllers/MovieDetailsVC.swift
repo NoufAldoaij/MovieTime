@@ -46,7 +46,7 @@ class MovieDetailsVC: UIViewController {
             } else {
                 self.activityIndicator.startAnimating()
                  self.activityIndicator.hidesWhenStopped = true
-                HelperClass().showAlert(title: nil, message: "Could load moives details", self)
+                HelperClass().showAlert(title: nil, message: "Could not load moives details", self)
             }
         }
     }

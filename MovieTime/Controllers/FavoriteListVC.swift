@@ -18,10 +18,6 @@ class FavoriteListVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var favoriteList: [FavoriteListEntity] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadData()

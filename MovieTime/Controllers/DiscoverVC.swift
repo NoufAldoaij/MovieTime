@@ -40,19 +40,24 @@ UICollectionViewDataSource {
     
     // Load moives data from the TMDb
     func loadData() {
-        webserviceManager().getMovies(page: 1, classfication: "popular") { (success, listOfMovie) in
-            if success {
-                self.listOfPopularMovies = listOfMovie!
-                self.reloadCollectionViews()
+        if Connectivity.isConnectedToInternet {
+            webserviceManager().getMovies(page: 1, classfication: "popular") { (success, listOfMovie) in
+                if success {
+                    self.listOfPopularMovies = listOfMovie!
+                    self.reloadCollectionViews()
+                }
             }
-        }
-        
-        webserviceManager().getMovies(page: 1, classfication: "upcoming") { (success, listOfMovie) in
-            if success {
-                self.listOfUpcomingMovies = listOfMovie!
-                self.reloadCollectionViews()
+            
+            webserviceManager().getMovies(page: 1, classfication: "upcoming") { (success, listOfMovie) in
+                if success {
+                    self.listOfUpcomingMovies = listOfMovie!
+                    self.reloadCollectionViews()
+                }
             }
+        } else {
+            HelperClass().showAlert(title: nil, message: "Please make sure you have your internet connection on", self)
         }
+    
     }
     
     // Load moives poster
