@@ -64,17 +64,17 @@ class DiscoverMoreVC: UIViewController,UITableViewDelegate, UITableViewDataSourc
         cell.movieTitle.text = entity.title
         cell.moviesReleaseDate.text = entity.releaseDate
         cell.voteAverage.text = "\(entity.voteAverage)"
-        getMoviePoster(entity.posterPath!) { (image) in
+        getMoviePoster(entity.backdropPath) { (image) in
             cell.moviePoster.image = image
             cell.moviesPosterData = image.pngData()
         }
-        if  UserPreferences().isMovieInFavoriteList(title: entity.title!) {
+        if  UserPreferences().isMovieInFavoriteList(title: entity.title) {
             cell.favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
         } else {
             cell.favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
         }
         
-        if UserPreferences().isMovieInWatchList(title: entity.title!) {
+        if UserPreferences().isMovieInWatchList(title: entity.title) {
             cell.watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
         } else {
             cell.watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
@@ -93,11 +93,9 @@ class DiscoverMoreVC: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     // Show more details for individual movie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
-        //let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
-        //vc.movies = listOfMovies[indexPath.row]
-        //self.navigationController?.pushViewController(vc, animated: true)
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
+        vc.movieID = String(listOfMovies[indexPath.row].id)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func dismissView(_ sender: Any) {

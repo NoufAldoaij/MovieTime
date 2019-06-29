@@ -20,10 +20,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
     // Save or remove movie to the watch list
     @IBAction func updateWatchList(_ sender: UIButton) {
         if watchListButton.currentImage == #imageLiteral(resourceName: "bookmark") {
-            UserPreferences().addToWatchList(movie!,moviesPosterData!)
+           UserPreferences().addToWatchList(String(movie!.id), movie!.title, movie!.releaseDate , moviesPosterData!)
             watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
         } else {
-            UserPreferences().removeFromWatchList(movie!.title!, movie!.releaseDate!)
+            UserPreferences().removeFromWatchList(movie!.title, movie!.releaseDate)
             watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
         }
     }
@@ -31,10 +31,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
     // Save or remove movie from favorites list
     @IBAction func updateFavoritesList(_ sender: Any) {
         if favoriteButton.currentImage == #imageLiteral(resourceName: "hearts") {
-            UserPreferences().addToFavoriteList(movie!, moviesPosterData!)
+            UserPreferences().addToFavoriteList(String(movie!.id), movie!.title, movie!.releaseDate , moviesPosterData!)
             favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
         } else {
-            UserPreferences().removeFavoriteList(movie!.title!, movie!.releaseDate!)
+            UserPreferences().removeFavoriteList(movie!.title, movie!.releaseDate)
             favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
         }
     }

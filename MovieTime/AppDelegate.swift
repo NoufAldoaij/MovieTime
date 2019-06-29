@@ -13,10 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var watchList = [WatchList]()
-    var favoriteList = [FavoriteList]()
     
-    //let dataControllers = DataControllers(modelName: "MovieTime")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true

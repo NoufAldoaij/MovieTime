@@ -69,10 +69,12 @@ UICollectionViewDataSource {
         popularMoviesCollectionView.reloadData()
         upcomingMoviesCollectionView.reloadData()
     }
-   
+    
     // Dismiss the keyboard when is the search has been clicked
     @objc func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         searchBar.resignFirstResponder()
+        
+        
     }
     
     // Show 10 inital movies
@@ -91,18 +93,18 @@ UICollectionViewDataSource {
             let entity = listOfPopularMovies[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularMoviesCell", for: indexPath) as! MovieCollectionViewCell
             cell.movie = entity
-            getMoviePoster(entity.posterPath!, completion: { (image) in
+            getMoviePoster(entity.posterPath, completion: { (image) in
                 cell.moviesPoster.image = image
                 cell.moviesPosterData = image.pngData()
             })
             
-            if UserPreferences().isMovieInWatchList(title: entity.title!) {
+            if UserPreferences().isMovieInWatchList(title: entity.title) {
                 cell.watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
             } else {
                 cell.watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
             }
             
-            if UserPreferences().isMovieInFavoriteList(title: entity.title!) {
+            if UserPreferences().isMovieInFavoriteList(title: entity.title) {
                 cell.favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
             } else {
                 cell.favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
@@ -113,18 +115,18 @@ UICollectionViewDataSource {
             let entity = listOfUpcomingMovies[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upComingMoviesCell", for: indexPath) as! MovieCollectionViewCell
             cell.movie = entity
-            getMoviePoster(entity.posterPath!) { (image) in
+            getMoviePoster(entity.posterPath) { (image) in
                 cell.moviesPoster.image = image
                 cell.moviesPosterData = image.pngData()
             }
             
-            if UserPreferences().isMovieInWatchList(title: entity.title!) {
+            if UserPreferences().isMovieInWatchList(title: entity.title) {
                 cell.watchListButton.setImage(#imageLiteral(resourceName: "pink_bookmark"), for: .normal)
             } else {
                 cell.watchListButton.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
             }
             
-            if UserPreferences().isMovieInFavoriteList(title: entity.title!) {
+            if UserPreferences().isMovieInFavoriteList(title: entity.title) {
                 cell.favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
             } else {
                 cell.favoriteButton.setImage(#imageLiteral(resourceName: "hearts"), for: .normal)
@@ -136,10 +138,13 @@ UICollectionViewDataSource {
     
     // Show more details for individual movie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
-        //vc.movies = listOfMovies[indexPath.row]
-        //        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MovieDetailsVC") as! MovieDetailsVC
+        if collectionView == popularMoviesCollectionView {
+            vc.movieID = String(listOfPopularMovies[indexPath.row].id)
+        } else {
+            vc.movieID = String(listOfUpcomingMovies[indexPath.row].id)
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // Show more movies for popular or upcoming
@@ -153,12 +158,11 @@ UICollectionViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-  
+    
     // show the search VC to search for a specific movie
     @IBAction func searchForMovies(_ sender: Any) {
-        HelperClass().showAlert(title: nil, message: "This functionality currently unavailable", self)
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchMoviesVC") as! SearchMoviesVC
-//        HelperClass().showPopUp(vc, parent: self)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SearchMoviesVC") as! SearchMoviesVC
+        HelperClass().showPopUp(vc, parent: self)
     }
 }
 

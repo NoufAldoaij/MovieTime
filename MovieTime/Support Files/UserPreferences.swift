@@ -15,18 +15,19 @@ class UserPreferences:NSObject {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Save moive to watch list
-    func addToWatchList (_ movie:MovieEntity, _ moviesPoster:Data) {
+    func addToWatchList(_ movieId:String, _ movieTitle:String, _ releaseDate:String, _ moviePoster:Data) {
         do {
             let watchList = WatchListEntity(context: context)
-            watchList.movieTitle = movie.title
-            watchList.movieReleaseDate = movie.releaseDate
-            watchList.moviePoster = moviesPoster
+            watchList.movieTitle = movieTitle
+            watchList.movieId = movieId
+            watchList.movieReleaseDate = releaseDate
+            watchList.moviePoster = moviePoster
             try context.save()
         } catch {
             print("error while saving \(error)")
         }
     }
-    
+
     // Remove the moive for DB
     func removeFromWatchList (_ movieTitle:String, _ releaseDate:String) {
         let fetchRequest:NSFetchRequest<WatchListEntity> = WatchListEntity.fetchRequest()
@@ -64,11 +65,12 @@ class UserPreferences:NSObject {
     }
     
     // Save moive to favorite list
-    func addToFavoriteList (_ movie:MovieEntity, _ moviePoster:Data) {
+    func addToFavoriteList (_ movieId:String, _ movieTitle:String, _ releaseDate:String, _ moviePoster:Data) {
         do {
             let favoriteList = FavoriteListEntity(context: context)
-            favoriteList.movieTitle = movie.title
-            favoriteList.movieReleaseDate = movie.releaseDate
+            favoriteList.movieTitle = movieTitle
+            favoriteList.movieId = movieId
+            favoriteList.movieReleaseDate = releaseDate
             favoriteList.moviePoster = moviePoster
             try context.save()
             
