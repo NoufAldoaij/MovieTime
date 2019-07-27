@@ -64,10 +64,19 @@ class DiscoverMoreVC: UIViewController,UITableViewDelegate, UITableViewDataSourc
         cell.movieTitle.text = entity.title
         cell.moviesReleaseDate.text = entity.releaseDate
         cell.voteAverage.text = "\(entity.voteAverage)"
-        getMoviePoster(entity.backdropPath) { (image) in
-            cell.moviePoster.image = image
-            cell.moviesPosterData = image.pngData()
+        
+        if let backdropPath = entity.backdropPath {
+            if let image = webserviceManager.instance.cachedImage(for: backdropPath) {
+                cell.moviePoster.image = image
+            } else {
+                getMoviePoster(backdropPath) { (image) in
+                    cell.moviePoster.image = image
+                    cell.moviesPosterData = image.pngData()
+                }
+            }
+            
         }
+        
         if  UserPreferences().isMovieInFavoriteList(title: entity.title) {
             cell.favoriteButton.setImage(#imageLiteral(resourceName: "pinkHearts"), for: .normal)
         } else {

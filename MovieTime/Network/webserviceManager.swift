@@ -17,7 +17,17 @@ struct Connectivity {
     }
 }
 
+
+
 class webserviceManager {
+    
+    //let imageCache = AutoPurgingImageCache()
+    let imageCache = AutoPurgingImageCache(
+        memoryCapacity: UInt64(100).megabytes(),
+        preferredMemoryUsageAfterPurge: UInt64(60).megabytes()
+    )
+    static let instance = webserviceManager()
+    
     
     // Load moives data from the TMDb
     func getMovies(page:Int, classfication:String, completion: @escaping (_ success:Bool, _ moives:[MovieEntity]?) -> Void) -> Void {
@@ -72,6 +82,7 @@ class webserviceManager {
             Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseImage { (respones) in
                 if respones.data != nil {
                     let webRespones = respones.result.value
+                    self.cache(webRespones!, for: imagePath)
                     completion (true,webRespones)
                 } else {
                     completion (false,nil)
@@ -81,6 +92,18 @@ class webserviceManager {
             completion (false,nil)
             
         }
+    }
+    
+    func cache(_ image: Image, for url: String) {
+        let urlRequest = URLRequest(url: URL(string: "https://image.tmdb.org/t/p/w500\(url)")!)
+        imageCache.add(image, for: urlRequest, withIdentifier: url)
+        //imageCache.add(image, withIdentifier: fullUrl)
+    }
+    
+    func cachedImage(for url: String) -> UIImage? {
+        let urlRequest = URLRequest(url: URL(string: "https://image.tmdb.org/t/p/w500\(url)")!)
+        let cachedImage = imageCache.image(for: urlRequest, withIdentifier: url)
+        return cachedImage
     }
     
     func getMoiveDetails(id:String ,completion: @escaping (_ success:Bool, _ movieDetails:MovieDetailsEntity?)-> Void ) -> Void {
@@ -107,3 +130,13 @@ class webserviceManager {
         }
     }
 }
+
+
+extension UInt64 {
+    
+    func megabytes() -> UInt64 {
+        return self * 1024 * 1024
+    }
+    
+}
+

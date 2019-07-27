@@ -46,7 +46,7 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
     
     func loadData() {
         if Connectivity.isConnectedToInternet {
-            webserviceManager().getMovies(page: pageNumber, classfication: "popular") { (success, movies ) in
+            webserviceManager.instance.getMovies(page: pageNumber, classfication: "popular") { (success, movies ) in
                 if success {
                     self.listOfMovies = movies!
                     self.tableView.reloadData()
@@ -64,18 +64,18 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
         if searchText == "" {
             loadData()
         } else {
-            webserviceManager().searchForMovies(movieTitle: searchText) { (success, movies) in
+            webserviceManager.instance.searchForMovies(movieTitle: searchText) { (success, movies) in
                 if success {
                     self.listOfMovies = movies!
                     self.tableView.reloadData()
-                } 
+                }
             }
         }
     }
     
     // Load moives poster
     func getMoviePoster(_ imagePath: String , completion: @escaping (_ image: UIImage) -> Void ) -> Void {
-        webserviceManager().getMoviePoster(imagePath:imagePath) { (success, image) in
+        webserviceManager.instance.getMoviePoster(imagePath:imagePath) { (success, image) in
             if success {
                 completion(image!)
             }
@@ -98,9 +98,17 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
         cell.movie = entity
         cell.movieTitle.text = entity.title
         cell.movieGenres.text = entity.releaseDate
-        getMoviePoster(entity.posterPath) { (image) in
+        if let image = webserviceManager.instance.cachedImage(for: entity.posterPath) {
             cell.moviePoster.image = image
             cell.moviesPosterData = image.pngData()
+            print("image is being cached")
+        } else {
+            getMoviePoster(entity.posterPath) { (image) in
+                cell.moviePoster.image = image
+                cell.moviesPosterData = image.pngData()
+                print("image is being download")
+                
+            }
         }
         
         if UserPreferences().isMovieInWatchList(title: entity.title) {
@@ -152,7 +160,7 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSession.Category.record)
+            //try audioSession.setCategory(AVAudioSession.Category.record)
             try audioSession.setMode(AVAudioSession.Mode.measurement)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
@@ -177,7 +185,7 @@ class SearchMoviesVC: UIViewController,UISearchBarDelegate,UITableViewDelegate,U
                 self.searchBar.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
                 
-                webserviceManager().searchForMovies(movieTitle: (result?.bestTranscription.formattedString)!) { (success, movies) in
+                webserviceManager.instance.searchForMovies(movieTitle: (result?.bestTranscription.formattedString)!) { (success, movies) in
                     if success {
                         self.listOfMovies = movies!
                         self.tableView.reloadData()

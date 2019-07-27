@@ -23,7 +23,7 @@ class MovieDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +34,7 @@ class MovieDetailsVC: UIViewController {
     
     func loadData() {
         activityIndicator.startAnimating()
-        webserviceManager().getMoiveDetails(id:movieID) { (success, MovieDetails) in
+        webserviceManager.instance.getMoiveDetails(id:movieID) { (success, MovieDetails) in
             if success {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidesWhenStopped = true
@@ -43,9 +43,10 @@ class MovieDetailsVC: UIViewController {
                 self.getMoviePoster(self.movies!.posterPath!) { (image) in
                     self.imageData = image.pngData()!
                 }
+                
             } else {
                 self.activityIndicator.startAnimating()
-                 self.activityIndicator.hidesWhenStopped = true
+                self.activityIndicator.hidesWhenStopped = true
                 HelperClass().showAlert(title: nil, message: "Could not load moives details", self)
             }
         }
@@ -58,12 +59,30 @@ class MovieDetailsVC: UIViewController {
             overviewLable.text = self.movies?.overview
             // if the movies does not belong to collection use the image from the poster path
             if movies?.belongsToCollection != nil {
-                getMoviePoster(movies!.belongsToCollection!.posterPath!) { (image) in
-                   self.backgroundView.image = image
-                }
-            } else {
-                getMoviePoster(movies!.posterPath!) { (image) in
+                if let image = webserviceManager.instance.cachedImage(for: movies!.belongsToCollection!.posterPath!) {
                     self.backgroundView.image = image
+                    print("image is being cached")
+                } else {
+                    self.getMoviePoster(movies!.belongsToCollection!.posterPath!) { (image) in
+                        self.backgroundView.image = image
+                        print("image is being download")
+                    }
+                }
+                //                getMoviePoster(movies!.belongsToCollection!.posterPath!) { (image) in
+                //                    self.backgroundView.image = image
+                //                }
+            } else {
+                //                getMoviePoster(movies!.posterPath!) { (image) in
+                //                    self.backgroundView.image = image
+                //                }
+                if let image = webserviceManager.instance.cachedImage(for: movies!.posterPath!) {
+                    self.backgroundView.image = image
+                    print("image is being cached")
+                } else {
+                    self.getMoviePoster(movies!.posterPath!) { (image) in
+                        self.backgroundView.image = image
+                        print("image is being download")
+                    }
                 }
             }
             
@@ -83,13 +102,13 @@ class MovieDetailsVC: UIViewController {
     }
     
     func getMoviePoster(_ imagePath: String , completion: @escaping (_ image: UIImage) -> Void ) -> Void {
-        webserviceManager().getMoviePoster(imagePath:imagePath) { (success, image) in
+        webserviceManager.instance.getMoviePoster(imagePath:imagePath) { (success, image) in
             if success {
                 completion(image!)
             }
         }
     }
-  
+    
     
     @IBAction func updateWatchList(_ sender: UIButton) {
         if let movies = movies {
@@ -98,9 +117,9 @@ class MovieDetailsVC: UIViewController {
                 UserPreferences().addToWatchList(String(movies.id),movies.title!, movies.releaseDate!, imageData!)
             } else {
                 watchListBtn.setImage(#imageLiteral(resourceName: "bookmark"), for: .normal)
-               UserPreferences().removeFromWatchList(movies.title!, movies.releaseDate!)
+                UserPreferences().removeFromWatchList(movies.title!, movies.releaseDate!)
             }
-           
+            
         }
     }
     

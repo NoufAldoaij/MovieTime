@@ -32,7 +32,7 @@ class MovieEntity: Codable {
     var posterPath: String
     var originalTitle: String
     var genreIDS: [Int]
-    var backdropPath: String
+    var backdropPath: String?
     var adult: Bool
     var overview, releaseDate: String
     
@@ -44,7 +44,7 @@ class MovieEntity: Codable {
         case posterPath = "poster_path"
         case originalTitle = "original_title"
         case genreIDS = "genre_ids"
-        case backdropPath = "backdrop_path"
+       case backdropPath = "backdrop_path"
         case adult, overview
         case releaseDate = "release_date"
     }
